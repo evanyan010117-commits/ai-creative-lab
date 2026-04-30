@@ -1,0 +1,15 @@
+<html><body>
+<h1>AI创意实验室</h1>
+<input id="theme" placeholder="输入主题">
+<button onclick="go()">生成</button>
+<pre id="out"></pre>
+<script>
+function go(){
+fetch('/create',{method:'POST',headers:{'Content-Type':'application/json'},
+body:JSON.stringify({theme:document.getElementById('theme').value})})
+.then(r=>r.json()).then(d=>{
+document.getElementById('out').innerText=d.final_result;
+});
+}
+</script>
+</body></html>
